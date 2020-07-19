@@ -58,7 +58,7 @@ public void crearMatriz(int dimension, int porcentaje) {
 	
 	grafo.generarGrafo(laberinto, dimension);
 	
-	
+	//holamunfo
 }
 
 
