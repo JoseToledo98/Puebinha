@@ -1,12 +1,16 @@
 package app;
 
+import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ *
+ * @author ratad
+ */
 public class Grafo {
-List<Vertice> grafo= new ArrayList<Vertice>();
+    List<Vertice> grafo= new ArrayList<Vertice>();
+    List<Integer> pesos= new ArrayList<Integer>();
 Vertice vertice;
-
 public  void generarGrafo(int[][] laberinto,int dimension) {
 	
 	int contador=0;
@@ -16,6 +20,7 @@ public  void generarGrafo(int[][] laberinto,int dimension) {
 			vertice= new Vertice(contador,laberinto[i][j]);
 			contador++;
 			grafo.add(vertice);
+            pesos.add(laberinto[i][j]);
 		}
 	}
 	
@@ -24,7 +29,7 @@ public  void generarGrafo(int[][] laberinto,int dimension) {
 		System.out.println(grafo.get(h).toString());
 	}
 	
-	vertice.encontarAdyacentes(laberinto, grafo, dimension);
+	vertice.encontarAdyacentes(laberinto, grafo, dimension,pesos);
 }
 
 
@@ -37,4 +42,5 @@ for(int i=0; i<grafo1.size(); i++) {
 
 return vertice;
 }
-} 
+}
+

@@ -3,15 +3,20 @@ package app;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ *
+ * @author ratad
+ */
 public class Vertice {
-private List<Vertice> verticesAdyacentes= new ArrayList<Vertice>();
+    private List<Vertice> verticesAdyacentes= new ArrayList<Vertice>();
 private int[][] indices;
 Vertice vertice;
 private int id;
 private int peso;
 Grafo gra= new Grafo();
 
-public void encontarAdyacentes(int[][] laberinto, List<Vertice> grafo,int dimension) {
+
+public void encontarAdyacentes(int[][] laberinto, List<Vertice> grafo,int dimension,List<Integer> pesos) {
 	indices= new int[dimension][dimension];
 	int indice=0;
 	//genero mi matriz de indices
@@ -32,48 +37,74 @@ public void encontarAdyacentes(int[][] laberinto, List<Vertice> grafo,int dimens
 	}
 	
 	System.out.println("lista de adyacencia: ");
+        
 	
 	for(int i=0; i<dimension; i++) {
 		
 		
 		for ( int j=0; j<dimension; j++) {
-			
+
+			if(pesos.get(indices[i][j])!=0){
+                            
+                        
 			if((i-1)>=0) {
 				int idAd=indices[i-1][j];
 				//extraigo adyascente arriba
-				System.out.print("Vertice numero: "+indices[i][j]+" Vertice Adyacente: "+gra.getVertice(idAd, grafo).toString());
+                               // System.out.println("entre en el if con peso "+pesos.get(indices[i][j]));
+                                
+                                   // System.out.println("peso con iAd "+pesos.get(idAd));
+                                    System.out.print("Vertice numero: "+indices[i][j]+" Vertice Adyacente: ");
+                                    if(pesos.get(idAd)!=0){
+                                    System.out.print(gra.getVertice(idAd, grafo).toString());
+                                    }
 				if((i+1) < dimension) {
 					//adyacente abajo
 					int idArriba=indices[i+1][j];
-					System.out.print(", "+gra.getVertice(idArriba, grafo).toString());
-				}
+                                       if(pesos.get(idArriba)!=0 ){
+                                            System.out.print(", "+gra.getVertice(idArriba, grafo).toString());				
+                                        }
+                                }	
 			}else {
 				if((i+1) < dimension) {
 					int idArriba=indices[i+1][j];
-					System.out.print("Vertice numero: "+indices[i][j]+" Vertice Adyacente: "+gra.getVertice(idArriba, grafo).toString());
+                                       
+                                       
+                                            System.out.print("Vertice numero: "+indices[i][j]+" Vertice Adyacente: ");
+                                             if(pesos.get(idArriba)!=0){
+                                            System.out.print(gra.getVertice(idArriba, grafo).toString());
+                                        }
+					
 				}
 			}
-			
-			
+
 			if((j-1)>=0) {
 				int idIzquierda=indices[i][j-1];
-				System.out.print(" , "+gra.getVertice(idIzquierda, grafo).toString());
+                                if(pesos.get(idIzquierda)!=0){
+                                    System.out.print(" , "+gra.getVertice(idIzquierda, grafo).toString());
+                                }
+				
 				if((j+1)<dimension) {
 					int id3=indices[i][j+1];
-					System.out.println(" , "+gra.getVertice(id3, grafo).toString());
+                                        if(pesos.get(id3)!=0){
+                                            System.out.println(" , "+gra.getVertice(id3, grafo).toString());
+                                        }
+					
 				}else {
 					System.out.println();
 				}
 			}else {
 				if((j+1)<dimension) {
 					int id2=indices[i][j+1];
-					System.out.println(" , "+gra.getVertice(id2, grafo).toString());
+                                        if(pesos.get(id2)!=0){
+                                            System.out.println(" , "+gra.getVertice(id2, grafo).toString());
+                                        }
+					
 				}else {
 					System.out.println();
 				}
 			}
 			
-			
+                        }
 			
 		}
 		System.out.println();
@@ -83,9 +114,7 @@ public void encontarAdyacentes(int[][] laberinto, List<Vertice> grafo,int dimens
 	
 }
 
-public Vertice() {
-	
-}
+
 public Vertice(int id, int peso) {
 	
 	this.id = id;
@@ -113,6 +142,5 @@ public void setPeso(int peso) {
 public String toString() {
 	return "Vertice [id=" + id + ", peso=" + peso + "]";
 }
-
 
 }
