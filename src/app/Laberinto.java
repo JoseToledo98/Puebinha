@@ -15,6 +15,7 @@ public void crearMatriz(int dimension, int porcentaje) {
 			if( i==0 && j==0 ) {
 				//marco la entrada en [0][0]
 				laberinto[i][j]=-1;
+				//hello bajaina
 				
 			}else {
 				
