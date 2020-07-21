@@ -47,64 +47,67 @@ public void encontarAdyacentes(int[][] laberinto, List<Vertice> grafo,int dimens
 			if(pesos.get(indices[i][j])!=0){
                             
                         
-			if((i-1)>=0) {
-				int idAd=indices[i-1][j];
-				//extraigo adyascente arriba
-                               // System.out.println("entre en el if con peso "+pesos.get(indices[i][j]));
-                                
-                                   // System.out.println("peso con iAd "+pesos.get(idAd));
-                                    System.out.print("Vertice numero: "+indices[i][j]+" Vertice Adyacente: ");
-                                    if(pesos.get(idAd)!=0){
-                                    System.out.print(gra.getVertice(idAd, grafo).toString());
-                                    }
-				if((i+1) < dimension) {
-					//adyacente abajo
-					int idArriba=indices[i+1][j];
-                                       if(pesos.get(idArriba)!=0 ){
-                                            System.out.print(", "+gra.getVertice(idArriba, grafo).toString());				
-                                        }
-                                }	
-			}else {
-				if((i+1) < dimension) {
-					int idArriba=indices[i+1][j];
-                                       
-                                       
-                                            System.out.print("Vertice numero: "+indices[i][j]+" Vertice Adyacente: ");
-                                             if(pesos.get(idArriba)!=0){
-                                            System.out.print(gra.getVertice(idArriba, grafo).toString());
-                                        }
-					
+				if((i-1)>=0) {
+					int idAd=indices[i-1][j];
+					//extraigo adyascente arriba
+										  //esta parte es la que modifique
+										System.out.print("Vertice numero: "+indices[i][j]+" Vertice Adyacente: ");
+										if(pesos.get(idAd)!=0){
+										System.out.print(gra.getVertice(idAd, grafo).toString());
+										grafo.get(indices[i][j]).verticesAdyacentes.add(gra.getVertice(idAd, grafo));
+										}
+					if((i+1) < dimension) {
+						//adyacente abajo
+						int idArriba=indices[i+1][j];
+										   if(pesos.get(idArriba)!=0 ){
+												System.out.print(", "+gra.getVertice(idArriba, grafo).toString());		
+												grafo.get(indices[i][j]).verticesAdyacentes.add(gra.getVertice(idArriba, grafo));
+											}
+									}	
+				}else {
+					if((i+1) < dimension) {
+						int idArriba=indices[i+1][j];
+												System.out.print("Vertice numero: "+indices[i][j]+" Vertice Adyacente: ");
+												 if(pesos.get(idArriba)!=0){
+												System.out.print(gra.getVertice(idArriba, grafo).toString());
+												//se añade los adya
+												grafo.get(indices[i][j]).verticesAdyacentes.add(gra.getVertice(idArriba, grafo));
+											}
+						
+					}
 				}
-			}
-
-			if((j-1)>=0) {
-				int idIzquierda=indices[i][j-1];
-                                if(pesos.get(idIzquierda)!=0){
-                                    System.out.print(" , "+gra.getVertice(idIzquierda, grafo).toString());
-                                }
+	
+				if((j-1)>=0) {
+					int idIzquierda=indices[i][j-1];
+									if(pesos.get(idIzquierda)!=0){
+										System.out.print(" , "+gra.getVertice(idIzquierda, grafo).toString());
+										grafo.get(indices[i][j]).verticesAdyacentes.add(gra.getVertice(idIzquierda, grafo));
+									}
+					
+					if((j+1)<dimension) {
+						int id3=indices[i][j+1];
+											if(pesos.get(id3)!=0){
+												System.out.println(" , "+gra.getVertice(id3, grafo).toString());
+												grafo.get(indices[i][j]).verticesAdyacentes.add(gra.getVertice(id3, grafo));
+											}
+						
+					}else {
+						System.out.println();
+					}
+				}else {
+					if((j+1)<dimension) {
+						int id2=indices[i][j+1];
+											if(pesos.get(id2)!=0){
+												System.out.println(" , "+gra.getVertice(id2, grafo).toString());
+											   grafo.get(indices[i][j]).verticesAdyacentes.add(gra.getVertice(id2, grafo));
+											}
+						
+					}else {
+						System.out.println();
+					}
+				}
 				
-				if((j+1)<dimension) {
-					int id3=indices[i][j+1];
-                                        if(pesos.get(id3)!=0){
-                                            System.out.println(" , "+gra.getVertice(id3, grafo).toString());
-                                        }
-					
-				}else {
-					System.out.println();
-				}
-			}else {
-				if((j+1)<dimension) {
-					int id2=indices[i][j+1];
-                                        if(pesos.get(id2)!=0){
-                                            System.out.println(" , "+gra.getVertice(id2, grafo).toString());
-                                        }
-					
-				}else {
-					System.out.println();
-				}
-			}
-			
-                        }
+							}
 			
 		}
 		System.out.println();
