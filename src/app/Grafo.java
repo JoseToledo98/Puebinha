@@ -30,6 +30,7 @@ public  void generarGrafo(int[][] laberinto,int dimension) {
 	}
 	
 	vertice.encontarAdyacentes(laberinto, grafo, dimension,pesos);
+	algoritmoDijkstra(grafo);
 }
 
 
@@ -41,6 +42,39 @@ for(int i=0; i<grafo1.size(); i++) {
 }
 
 return vertice;
+}
+
+public void algoritmoDijkstra(List<Vertice> grafo) {
+	grafo.get(0).setRuta(0);
+	grafo.get(grafo.size()-1).setPeso(0);
+	
+	for(int i=0; i<grafo.size(); i++) {
+		System.out.print("vertice "+i+" ");
+		for( int j=0; j<grafo.get(i).getVerticesAdyacentes().size(); j++) {
+			
+			if(grafo.get(i).getRuta()==0) {
+				
+				grafo.get(i).getVerticesAdyacentes().get(j).setRuta(grafo.get(i).getVerticesAdyacentes().get(j).getPeso());
+				
+			}else {
+				if(grafo.get(i).getRuta() != 100) {
+					//cuando ya tiene un peso de ruta, se compara la suma del padre y su peso con el peso de ruta que ya tenia establecido
+					
+					int rutaTemporal=grafo.get(i).getRuta()+ grafo.get(i).getVerticesAdyacentes().get(j).getPeso();
+					if(rutaTemporal<grafo.get(i).getVerticesAdyacentes().get(j).getRuta()) {
+						grafo.get(i).getVerticesAdyacentes().get(j).setRuta(rutaTemporal);
+					}
+					
+				}else{
+					//cuando no tiene peso de ruta, se suma su peso, con el peso de ruta del padre
+					int rutaNueva=grafo.get(i).getRuta()+grafo.get(i).getVerticesAdyacentes().get(j).getPeso();
+					grafo.get(i).getVerticesAdyacentes().get(j).setRuta(rutaNueva);
+				}
+			}
+			System.out.print(" "+grafo.get(i).getVerticesAdyacentes().get(j).toString());
+		}
+		System.out.println();
+	}
 }
 }
 
