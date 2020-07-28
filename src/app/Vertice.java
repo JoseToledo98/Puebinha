@@ -13,7 +13,7 @@ private int[][] indices;
 Vertice vertice;
 private int id;
 private int peso;
-private int ruta=100;
+private int ruta=10000;
 Grafo gra= new Grafo();
 
 
@@ -28,56 +28,32 @@ public void encontarAdyacentes(int[][] laberinto, List<Vertice> grafo,int dimens
 		}
 	}
 	
-	System.out.println("tabla con los indices");
 	for(int i=0; i<dimension; i++) {
 		for ( int j=0; j<dimension; j++) {
-			System.out.print("["+indices[i][j]+"] ");
-			
-		}
-		System.out.println();
-	}
-	
-	//System.out.println("lista de adyacencia: ");
-        
-	
-	for(int i=0; i<dimension; i++) {
-		
-		
-		for ( int j=0; j<dimension; j++) {
-
-			if(pesos.get(indices[i][j])!=0){
-                            
-                        
+			if(pesos.get(indices[i][j])!=0){      
 				if((i-1)>=0) {
 					int idAd=indices[i-1][j];
 					//extraigo adyascente arriba
 										  //esta parte es la que modifique
-										//System.out.print("Vertice numero: "+indices[i][j]+" Vertice Adyacente: ");
 										if(pesos.get(idAd)!=0){
-										//System.out.print(gra.getVertice(idAd, grafo).toString());
 										grafo.get(indices[i][j]).verticesAdyacentes.add(gra.getVertice(idAd, grafo));
 										}
 					if((i+1) < dimension) {
 						//adyacente abajo
 						int idArriba=indices[i+1][j];
-										   if(pesos.get(idArriba)!=0 ){
-												//System.out.print(", "+gra.getVertice(idArriba, grafo).toString());		
+										   if(pesos.get(idArriba)!=0 ){		
 												grafo.get(indices[i][j]).verticesAdyacentes.add(gra.getVertice(idArriba, grafo));
 											}
 									}	
 				}else {
 					if((i+1) < dimension) {
 						int idArriba=indices[i+1][j];
-												//System.out.print("Vertice numero: "+indices[i][j]+" Vertice Adyacente: ");
 												 if(pesos.get(idArriba)!=0){
-												//System.out.print(gra.getVertice(idArriba, grafo).toString());
 												//se añade los adya
 												grafo.get(indices[i][j]).verticesAdyacentes.add(gra.getVertice(idArriba, grafo));
 											}
-						
 					}
 				}
-	
 				if((j-1)>=0) {
 					int idIzquierda=indices[i][j-1];
 									if(pesos.get(idIzquierda)!=0){
@@ -128,6 +104,15 @@ public Vertice(int id, int peso) {
 	this.id = id;
 	this.peso = peso;
 }
+public Vertice() {
+	// TODO Auto-generated constructor stub
+}
+
+
+
+
+
+
 public List<Vertice> getVerticesAdyacentes() {
 	return verticesAdyacentes;
 }

@@ -31,7 +31,7 @@ public void crearMatriz(int dimension, int porcentaje) {
 			}
 		
 			}
-			System.out.println("["+i+"]"+"["+j+"] : "+laberinto[i][j]);
+			
 			
 		}
 	}
@@ -42,10 +42,10 @@ public void crearMatriz(int dimension, int porcentaje) {
 		
 		if(laberinto[fila][columna] !=-1 && laberinto[fila][columna] != -2) {
 			laberinto[fila][columna]=0;
-			System.out.println("["+fila+"]"+"["+columna+"]: pared");
+			
 		}else {
 			f--;
-			System.out.println("repitio");
+			
 		}
 	}
 	System.out.println("\n");
